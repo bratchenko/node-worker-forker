@@ -3,6 +3,10 @@ Worker Forker
 
 Simplifies spawning pool of worker processes and distributing tasks between them.
 
+Installation
+----------
+`npm install worker-forker`
+
 
 Usage
 -------
