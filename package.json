@@ -1,0 +1,25 @@
+{
+  "name": "worker-forker",
+  "version": "0.0.1",
+  "description": "Simplifies forking of worker processes and distributing tasks between them.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/daeq/node-worker-forker"
+  },
+  "keywords": [
+    "fork",
+    "worker",
+    "tasks",
+    "cluster",
+    "child_process"
+  ],
+  "author": "Daniil Bratchenko",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/daeq/node-worker-forker/issues"
+  }
+}
