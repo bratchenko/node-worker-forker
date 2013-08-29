@@ -21,16 +21,14 @@ var forker = new Forker(__dirname + "/worker.js");
 // Spawn some worker processes.
 forker.spawn(require('os').cpus().length);
 
-// Add some task parameters which would be evenly distributed between workers.
-forker.addTasks([4, 8, 15, 16]);
-
-// Add some more tasks
-forker.addTask(23);
-forker.addTask(42);
+// Add some tasks
+forker.addTask("task parameters", function(err, result1, result2) {
+    console.log("Got task result:", err, result1, result2);
+});
 
 // Handle various errors
 forker.on('error', function(err) {
-    console.log("Got error", err);
+    console.log("Got error:", err);
 });
 
 // Wait until all tasks finished
@@ -44,13 +42,15 @@ In worker file (worker.js in this example):
 var Worker = require('../index.js').Worker;
 
 // Init worker with function which executes tasks.
-var worker = new Worker(function(taskParams, callback) {
+var worker = new Worker(function(parameters, callback) {
     setTimeout(function() {
-        console.log("Worker got task:", taskParams);
-        callback();
+        console.log("Worker got task:", task parameters);
+        callback(null, "result 1", "result 2");
     }, 1000);
 });
 
 // Start processing tasks.
 worker.start();
 ```
+
+**NB!** Task parameters and results are transformed to strings due to interprocess communication limitations. If you want to pass objects either way, you should handle conversion to/from strings yourself.
